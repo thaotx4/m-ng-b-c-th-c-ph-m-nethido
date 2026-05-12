@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Net-Hi-Do | Màng bọc thực phẩm cao cấp</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/framer-motion@11.0.3/dist/framer-motion.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #f8fffb, #ffffff);
+      overflow-x: hidden;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #22c55e, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glow {
+      box-shadow: 0 0 40px rgba(52, 211, 153, 0.35);
+    }
+
+    .shine-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+      );
+      transition: 0.8s;
+    }
+
+    .shine-btn:hover::before {
+      left: 130%;
+    }
+
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(70px);
+      opacity: 0.25;
+      animation: move 18s infinite alternate ease-in-out;
+    }
+
+    @keyframes move {
+      from {
+        transform: translateY(0px) translateX(0px) scale(1);
+      }
+      to {
+        transform: translateY(-40px) translateX(30px) scale(1.1);
+      }
+    }
+
+    .wave {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 100px;
+    }
+
+    .testimonial-track {
+      animation: slide 20s linear infinite;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 5px solid #d1fae5;
+      border-top-color: #10b981;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="blob w-72 h-72 bg-green-300 top-10 left-10"></div>
+  <div class="blob w-96 h-96 bg-emerald-200 top-96 right-0"></div>
+
+  <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-white/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="text-2xl font-extrabold gradient-text">
+        Net-Hi-Do
+      </div>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#home" class="hover:text-green-600 transition">Trang chủ</a>
+        <a href="#features" class="hover:text-green-600 transition">Tính năng</a>
+        <a href="#benefits" class="hover:text-green-600 transition">Lợi ích</a>
+        <a href="#feedback" class="hover:text-green-600 transition">Đánh giá</a>
+        <a href="#contact" class="hover:text-green-600 transition">Liên hệ</a>
+      </div>
+
+      <button class="shine-btn bg-green-500 hover:bg-green-600 transition text-white px-5 py-3 rounded-full font-semibold shadow-lg glow">
+        Mua ngay
+      </button>
+    </div>
+  </nav>
+
+  <section id="home" class="min-h-screen relative flex items-center pt-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+
+      <div>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 text-sm text-green-700 font-medium">
+          ✨ Sản phẩm bảo quản thực phẩm premium
+        </div>
+
+        <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+          Màng bọc thực phẩm
+          <span class="gradient-text">Net-Hi-Do</span>
+        </h1>
+
+        <p class="text-lg text-gray-600 leading-relaxed mb-10 max-w-xl">
+          Giữ thực phẩm tươi lâu hơn, sạch hơn và an toàn hơn cho gia đình bạn.
+          Thiết kế tiện lợi, co giãn linh hoạt và phù hợp với mọi loại bát đĩa.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <button class="shine-btn bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl glow transition hover:scale-105">
+            Mua ngay
+          </button>
+
+          <button class="glass px-8 py-4 rounded-full font-semibold hover:scale-105 transition">
+            Xem chi tiết
+          </button>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center">
+        <div class="absolute w-72 h-72 bg-green-300 rounded-full blur-3xl opacity-40"></div>
+
+        <img
+          src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=1200&auto=format&fit=crop"
+          class="relative z-10 rounded-[40px] shadow-2xl w-full max-w-md object-cover float glow"
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path fill="#f0fdf4" d="M0,64L60,69.3C120,75,240,85,360,90.7C480,96,600,96,720,80C840,64,960,32,1080,26.7C1200,21,1320,43,1380,53.3L1440,64L1440,120L0,120Z"></path>
+    </svg>
+  </div>
+
+  <section id="features" class="py-24 bg-green-50/60">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Giới thiệu sản phẩm</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Thiết kế tiện lợi, sạch sẽ và an toàn cho việc bảo quản thực phẩm hàng ngày.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="glass p-8 rounded-[30px] hover:-translate-y-3 transition duration-500 hover:shadow-2xl">
+          <div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-6">
+            <i data-lucide="shield-check"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">PE an toàn thực phẩm</h3>
+          <p class="text-gray-600">An toàn khi tiếp xúc trực tiếp với thực phẩm.</p>
+        </div>
+
+        <div class="glass p-8 rounded-[30px] hover:-translate-y-3 transition duration-500 hover:shadow-2xl">
+          <div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-6">
+            <i data-lucide="sparkles"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Bền chắc</h3>
+          <p class="text-gray-600">Dày dặn và co giãn tốt, khó rách hơn loại thông thường.</p>
+        </div>
+
+        <div class="glass p-8 rounded-[30px] hover:-translate-y-3 transition duration-500 hover:shadow-2xl">
+          <div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-6">
+            <i data-lucide="refrigerator"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Giảm mùi tủ lạnh</h3>
+          <p class="text-gray-600">Giữ thực phẩm sạch sẽ và hạn chế ám mùi.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Thông số sản phẩm</h2>
+      </div>
+
+      <div class="glass rounded-[35px] overflow-hidden shadow-xl">
+        <div class="grid md:grid-cols-2">
+          <div class="p-6 border-b md:border-b-0 md:border-r border-white/30">
+            <div class="text-sm text-gray-500">Tên sản phẩm</div>
+            <div class="font-semibold text-lg">Màng bọc thực phẩm Net-Hi-Do</div>
+          </div>
+
+          <div class="p-6">
+            <div class="text-sm text-gray-500">Thành phần</div>
+            <div class="font-semibold text-lg">Chất liệu PE</div>
+          </div>
+
+          <div class="p-6 border-t border-white/30 md:border-r">
+            <div class="text-sm text-gray-500">Quy cách</div>
+            <div class="font-semibold text-lg">300c / 1 túi</div>
+          </div>
+
+          <div class="p-6 border-t border-white/30">
+            <div class="text-sm text-gray-500">Chiều dài kéo dãn</div>
+            <div class="font-semibold text-lg">38 cm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-gradient-to-b from-green-50 to-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Hướng dẫn sử dụng</h2>
+      </div>
+
+      <div class="space-y-10 relative before:absolute before:left-5 before:top-0 before:w-1 before:h-full before:bg-green-200">
+
+        <div class="flex gap-6 items-start relative">
+          <div class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center z-10">1</div>
+          <div class="glass p-6 rounded-3xl flex-1">
+            <h3 class="font-bold text-xl mb-2">Mở bao bì</h3>
+            <p class="text-gray-600">Mở nắp và lấy sản phẩm khỏi túi.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start relative">
+          <div class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center z-10">2</div>
+          <div class="glass p-6 rounded-3xl flex-1">
+            <h3 class="font-bold text-xl mb-2">Kéo miệng chun</h3>
+            <p class="text-gray-600">Co giãn linh hoạt để phù hợp nhiều kích thước.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6 items-start relative">
+          <div class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center z-10">3</div>
+          <div class="glass p-6 rounded-3xl flex-1">
+            <h3 class="font-bold text-xl mb-2">Chụp lên bát đĩa</h3>
+            <p class="text-gray-600">Ôm sát miệng bát giúp bảo quản hiệu quả.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Lợi ích nổi bật</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+
+        <div class="glass p-6 rounded-3xl text-center hover:scale-105 transition">
+          <div class="text-4xl mb-4">🥗</div>
+          <p class="font-semibold">Giữ độ tươi thực phẩm</p>
+        </div>
+
+        <div class="glass p-6 rounded-3xl text-center hover:scale-105 transition">
+          <div class="text-4xl mb-4">🛡️</div>
+          <p class="font-semibold">Không dễ rách</p>
+        </div>
+
+        <div class="glass p-6 rounded-3xl text-center hover:scale-105 transition">
+          <div class="text-4xl mb-4">🍲</div>
+          <p class="font-semibold">Giữ hương vị món ăn</p>
+        </div>
+
+        <div class="glass p-6 rounded-3xl text-center hover:scale-105 transition">
+          <div class="text-4xl mb-4">❄️</div>
+          <p class="font-semibold">Giảm mùi tủ lạnh</p>
+        </div>
+
+        <div class="glass p-6 rounded-3xl text-center hover:scale-105 transition">
+          <div class="text-4xl mb-4">✨</div>
+          <p class="font-semibold">Ôm sát bát đĩa</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-green-50/60">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-10">Video Demo</h2>
+
+      <div class="relative rounded-[40px] overflow-hidden shadow-2xl hover:scale-[1.02] transition duration-500">
+        <img
+          src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop"
+          class="w-full h-[500px] object-cover"
+        />
+
+        <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <button class="w-24 h-24 rounded-full bg-white/90 flex items-center justify-center text-3xl hover:scale-110 transition">
+            ▶
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feedback" class="py-24 overflow-hidden">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold">Khách hàng nói gì?</h2>
+    </div>
+
+    <div class="testimonial-track flex gap-8 w-max px-6">
+
+      <div class="glass p-8 rounded-[35px] w-[350px] shadow-xl">
+        <div class="flex items-center gap-4 mb-6">
+          <img src="https://i.pravatar.cc/100?img=1" class="w-16 h-16 rounded-full" />
+          <div>
+            <div class="font-bold">Lan Anh</div>
+            <div class="text-sm text-gray-500">Nội trợ</div>
+          </div>
+        </div>
+        <p class="text-gray-600 leading-relaxed">
+          Sản phẩm rất tiện lợi, ôm sát bát đĩa và giữ đồ ăn tươi lâu hơn.
+        </p>
+      </div>
+
+      <div class="glass p-8 rounded-[35px] w-[350px] shadow-xl">
+        <div class="flex items-center gap-4 mb-6">
+          <img src="https://i.pravatar.cc/100?img=5" class="w-16 h-16 rounded-full" />
+          <div>
+            <div class="font-bold">Minh Tú</div>
+            <div class="text-sm text-gray-500">Khách hàng</div>
+          </div>
+        </div>
+        <p class="text-gray-600 leading-relaxed">
+          Thiết kế đẹp, chất lượng cao cấp hơn nhiều loại thông thường.
+        </p>
+      </div>
+
+      <div class="glass p-8 rounded-[35px] w-[350px] shadow-xl">
+        <div class="flex items-center gap-4 mb-6">
+          <img src="https://i.pravatar.cc/100?img=10" class="w-16 h-16 rounded-full" />
+          <div>
+            <div class="font-bold">Thảo Vy</div>
+            <div class="text-sm text-gray-500">Food Blogger</div>
+          </div>
+        </div>
+        <p class="text-gray-600 leading-relaxed">
+          Giao diện đóng gói đẹp và cảm giác sử dụng rất sạch sẽ.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-28 bg-gradient-to-r from-green-300 to-emerald-200 relative overflow-hidden">
+    <div class="absolute w-96 h-96 bg-white/20 rounded-full blur-3xl top-0 left-0"></div>
+
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <h2 class="text-5xl font-extrabold text-gray-800 mb-8 leading-tight">
+        Bảo quản thực phẩm thông minh hơn cùng Net-Hi-Do
+      </h2>
+
+      <button class="shine-btn bg-white text-green-700 px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition">
+        Mua ngay hôm nay
+      </button>
+    </div>
+  </section>
+
+  <footer id="contact" class="py-16 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+
+      <div>
+        <h3 class="text-2xl font-bold mb-4 gradient-text">CÔNG TY TNHH SX TM CỎ BA LÁ</h3>
+        <p class="text-gray-600 leading-relaxed">
+          Đội 11 Thôn Xuân Lai - Xã Gia Bình - Tỉnh Bắc Ninh
+        </p>
+        <p class="text-gray-600 mt-4">
+          cobalacompany2026@gmail.com
+        </p>
+      </div>
+
+      <div class="flex md:justify-end items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center hover:scale-110 transition cursor-pointer">
+          <i data-lucide="facebook"></i>
+        </div>
+
+        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center hover:scale-110 transition cursor-pointer">
+          <i data-lucide="instagram"></i>
+        </div>
+
+        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center hover:scale-110 transition cursor-pointer">
+          <i data-lucide="mail"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1200);
+    });
+  </script>
+
+</body>
+</html>
